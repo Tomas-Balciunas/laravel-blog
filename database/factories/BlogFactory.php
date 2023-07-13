@@ -18,7 +18,7 @@ class BlogFactory extends Factory
     {
         return [
             'headline' => fake()->realText($maxNbChars = 100, $indexSize = 2),
-            'content' => fake()->realTextBetween($minNbChars = 160, $maxNbChars = 1000, $indexSize = 2),
+            'body' => fake()->realTextBetween($minNbChars = 160, $maxNbChars = 1000, $indexSize = 2),
             'user_id' => rand(2, 51)
         ];
     }

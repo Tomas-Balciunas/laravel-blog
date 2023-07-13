@@ -9,12 +9,14 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlogController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/authenticate', [LoginController::class, 'authenticate']);
-Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/registration', [RegisterController::class, 'registration']);
-
 Route::get('/admin', [AdminController::class, 'index']);
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/authenticate', [LoginController::class, 'authenticate']);
+    Route::get('/register', [RegisterController::class, 'index']);
+    Route::post('/registration', [RegisterController::class, 'registration']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/my_panel', [UserController::class, 'userPanel']);

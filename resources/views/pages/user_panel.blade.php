@@ -17,7 +17,7 @@
                                 <a href="#">{{ $blog->headline }}
                                 </a>
                             </h3>
-                            <p class="mt-3 line-clamp-3 text-sm leading-6 text-gray-600">{{ $blog->content }}</p>
+                            <p class="mt-3 line-clamp-3 text-sm leading-6 text-gray-600">{{ $blog->body }}</p>
                         </div>
                         <div class="relative mt-8 flex items-center gap-x-4">
                             <img

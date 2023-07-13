@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function index ()
+    public function index (Blog $blog)
     {
-        $blogs = Blog::all();
+        $blogs = $blog->latest()->get();
 
         return view('pages.home', compact('blogs'));
     }

@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function userPanel ()
     {
-        $userBlogs = Auth::user()->blog;
+        $userBlogs = Auth::user()->blog()->latest()->get();
         return view('pages.user_panel', compact('userBlogs'));
     }
 }

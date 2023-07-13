@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
 
         $bouncer->allow('admin')->to([
             'access-panel',
+            'create-blog',
             'update-blog',
             'delete-blog',
             'update-user',

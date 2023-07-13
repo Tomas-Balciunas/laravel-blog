@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use PhpParser\Node\Expr\Closure;
 
 class LoginController extends Controller
 {
@@ -15,7 +16,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function authenticate (Request $request)
+    public function authenticate (Request $request): RedirectResponse
     {
         $cred = $request->validate([
             'email' => ['required', 'email'],
@@ -30,7 +31,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             return redirect()
-                ->route('home')
+                ->intended(route('home'))
                 ->with('message', 'You have successfully logged in.');
         }
 

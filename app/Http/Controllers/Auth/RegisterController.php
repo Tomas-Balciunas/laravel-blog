@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Silber\Bouncer\Bouncer;
 
@@ -15,7 +16,7 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function registration (Request $request)
+    public function registration (Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required'],
@@ -31,8 +32,11 @@ class RegisterController extends Controller
         ]);
 
         $user->assign('user');
-        $user->allow()->toOwn(Blog::class)->to(['create', 'update', 'delete']);
+        $user->allow()->toOwn(Blog::class)->to(['update', 'delete']);
+        $user->allow()->to([
+            'create-blog'
+        ]);
 
-        return back()->with('message', 'Registration successful! You may now log in.');
+        return redirect('/login')->with('message', 'Registration successful! You may now log in.');
     }
 }

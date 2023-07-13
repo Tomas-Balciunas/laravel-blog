@@ -16,7 +16,7 @@
                                 <a href="#">{{ $blog->headline }}
                                 </a>
                             </h3>
-                            <p class="mt-3 line-clamp-3 text-sm leading-6 text-gray-600">{{ $blog->content }}</p>
+                            <p class="mt-3 line-clamp-3 text-sm leading-6 text-gray-600">{{ $blog->body }}</p>
                         </div>
                         <div class="relative mt-8 flex items-center gap-x-4">
                             <img src="https://imebehavioralhealth.com/wp-content/uploads/2021/10/user-icon-placeholder-1.png" alt="" class="h-10 w-10 rounded-full bg-gray-50">
@@ -28,15 +28,14 @@
                                 <p class="text-gray-600">Role</p>
                             </div>
                         </div>
+                        @can('delete', $blog)
+                            <form method="post" action="{{ route('blogs.destroy', $blog->id) }}">
+                                @csrf
+                                @method('delete')
+                                <button type="submit">delete</button>
+                            </form>
+                        @endcan
                     </article>
-
-                    @can('delete', $blog)
-                        <form method="post" action="{{ route('blogs.destroy', $blog->id) }}">
-                            @csrf
-                            @method('delete')
-                            <button type="submit">delete</button>
-                        </form>
-                    @endcan
 
                 @empty
 

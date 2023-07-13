@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
 
         foreach ($factory as $user) {
             $user->assign('user');
-            $user->allow()->toOwn(Blog::class)->to(['create', 'update', 'delete']);
+            $user->allow()->toOwn(Blog::class)->to(['update', 'delete']);
         }
 
     }
